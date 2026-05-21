@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мебельная фабрика «Маркиза» — Мягкая мебель от производителя без наценок</title>
+    <meta name="description" content="Диваны, кресла, пуфы от производителя в Ульяновске. Экономия до 30% без розничных наценок. Гарантия 2 года.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: { 50:'#faf6f1', 100:'#f0e6d5', 200:'#e0c9a8', 300:'#c9a97a', 400:'#b08d55', 500:'#957140', 600:'#7a5a30', 700:'#6b4d28', 800:'#5a4024', 900:'#4d3520', 950:'#3d2a1a' },
+                        cream: { 50:'#fefcf9', 100:'#fdf8f0', 200:'#f9eed8', 300:'#f3e0bc' },
+                        accent: { 400:'#d4a24e', 500:'#c4883a', 600:'#a87030', 700:'#8a5a28' }
+                    },
+                    fontFamily: { heading:['Manrope','sans-serif'], body:['Inter','sans-serif'] },
+                    animation: { 'fade-in':'fadeIn 0.8s ease-out', 'slide-up':'slideUp 0.8s ease-out', 'slide-down':'slideDown 0.3s ease-out', 'scale-in':'scaleIn 0.3s ease-out', 'float':'float 4s ease-in-out infinite', 'shimmer':'shimmer 2.5s infinite' }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+        @keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+        @keyframes fadeOut{to{opacity:0;transform:translateX(20px)}}
+        @keyframes pulse-ring{0%{transform:scale(0.8);opacity:0.5}100%{transform:scale(1.3);opacity:0}}
+        
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif}
+        
+        .hero-gradient{background:linear-gradient(160deg,#fdf8f0 0%,#f0e6d5 30%,#e0c9a8 60%,#d4b896 100%)}
+        
+        .glass{background:rgba(255,255,255,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.3)}
+        .glass-dark{background:rgba(90,64,36,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15)}
+        .glass-card{background:rgba(255,255,255,0.65);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(196,136,58,0.12)}
+        
+        .accent-gradient{background:linear-gradient(135deg,#d4a24e 0%,#c4883a 25%,#b07028 50%,#8a5a28 75%,#6b4d28 100%)}
+        .accent-gradient-hover{background:linear-gradient(135deg,#e0b060 0%,#d4a24e 25%,#c4883a 50%,#b07028 75%,#957140 100%)}
+        .accent-gradient-text{background:linear-gradient(135deg,#d4a24e 0%,#b07028 50%,#6b4d28 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .shimmer-text{background:linear-gradient(90deg,#d4a24e 0%,#f0d68a 25%,#d4a24e 50%,#f0d68a 75%,#d4a24e 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2.5s infinite}
+        
+        .product-card{transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+        .product-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(107,77,40,0.12)}
+        
+        .nav-link{position:relative}
+        .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#d4a24e,#8a5a28);transition:width 0.3s}
+        .nav-link:hover::after,.nav-link.active::after{width:100%}
+        
+        .modal-overlay{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+        
+        input:focus,textarea:focus,select:focus{outline:none;border-color:#c4883a;box-shadow:0 0 0 3px rgba(196,136,58,0.15)}
+        
+        .filter-btn{transition:all 0.25s}
+        .filter-btn.active{background:linear-gradient(135deg,#957140,#6b4d28);color:white;box-shadow:0 4px 16px rgba(107,77,40,0.25)}
+        
+        .toast{animation:slideInRight 0.4s ease-out,fadeOut 0.4s ease-out 2.6s forwards}
+        
+        ::-webkit-scrollbar{width:8px}
+        ::-webkit-scrollbar-track{background:#faf6f1}
+        ::-webkit-scrollbar-thumb{background:#c9a97a;border-radius:4px}
+        ::-webkit-scrollbar-thumb:hover{background:#957140}
+        
+        .section-visible{animation:slideUp 0.7s ease-out forwards}
+        .section-hidden{opacity:0;transform:translateY(40px)}
+        .image-zoom{transition:transform 0.6s ease}
+        .image-zoom:hover{transform:scale(1.05)}
+        
+        .stat-card{background:linear-gradient(135deg,rgba(255,255,255,0.7),rgba(255,255,255,0.4));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,136,58,0.15)}
+        
+        .coffee-icon{fill:#8a5a28}
+        .coffee-icon-stroke{stroke:#8a5a28;fill:none}
+    </style>
+</head>
+<body class="bg-cream-50 text-coffee-900 antialiased">
+
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 lg:h-20 flex items-center justify-between">
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169fa6309-2bbd-49fc-830a-b2e08e5a2b7e.png" alt="Логотип Маркиза" class="h-10 w-auto" loading="eager">
+                </a>
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#catalog" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">Каталог</a>
+                    <a href="#advantages" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">Преимущества</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">О фабрике</a>
+                    <a href="#reviews" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">Отзывы</a>
+                    <a href="#contacts" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">Контакты</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <a href="tel:+79374537915" class="hidden md:flex items-center gap-2 text-sm font-semibold text-coffee-700 hover:text-coffee-500 transition-colors">
+                        <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        +7 (937) 453-79-15
+                    </a>
+                    <button onclick="openCallbackModal()" class="accent-gradient text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-coffee-400/20 transition-all active:scale-95">
+                        Заказать звонок
+                    </button>
+                    <button class="lg:hidden p-2 rounded-lg hover:bg-coffee-50 transition-colors" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden glass border-t animate-slide-down">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#catalog" class="block py-2 text-sm font-medium text-coffee-700 hover:text-coffee-500" onclick="toggleMobileMenu()">Каталог</a>
+                <a href="#advantages" class="block py-2 text-sm font-medium text-coffee-700 hover:text-coffee-500" onclick="toggleMobileMenu()">Преимущества</a>
+                <a href="#about" class="block py-2 text-sm font-medium text-coffee-700 hover:text-coffee-500" onclick="toggleMobileMenu()">О фабрике</a>
+                <a href="#reviews" class="block py-2 text-sm font-medium text-coffee-700 hover:text-coffee-500" onclick="toggleMobileMenu()">Отзывы</a>
+                <a href="#contacts" class="block py-2 text-sm font-medium text-coffee-700 hover:text-coffee-500" onclick="toggleMobileMenu()">Контакты</a>
+                <div class="pt-3 border-t border-coffee-100">
+                    <a href="tel:+79374537915" class="flex items-center gap-2 text-sm font-semibold text-coffee-700">
+                        <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        +7 (937) 453-79-15
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero" class="relative pt-20 lg:pt-24 overflow-hidden">
+        <div class="hero-gradient min-h-[90vh] lg:min-h-screen flex items-center">
+            <!-- Decorative elements -->
+            <div class="absolute top-20 right-10 w-72 h-72 bg-coffee-200/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                    <div class="animate-slide-up">
+                        <div class="inline-flex items-center gap-2 glass px-5 py-2 rounded-full text-sm font-semibold text-coffee-700 mb-6">
+                            <span class="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></span>
+                            Производство с 2014 года
+                        </div>
+                        <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
+                            Мягкая мебель<br>
+                            <span class="accent-gradient-text">от производителя</span><br>
+                            без наценок
+                        </h1>
+                        <p class="text-lg text-coffee-600 mb-8 max-w-lg leading-relaxed">
+                            Экономия до <strong class="text-coffee-800">30%</strong> на диванах, креслах и пуфах. 
+                            Собственное производство в Ульяновской области.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#catalog" class="accent-gradient text-white px-8 py-4 rounded-xl font-semibold text-center hover:shadow-xl hover:shadow-coffee-400/25 transition-all active:scale-95">
+                                Смотреть каталог
+                            </a>
+                            <button onclick="scrollToSection('contacts')" class="glass text-coffee-700 px-8 py-4 rounded-xl font-semibold hover:bg-white/80 transition-all active:scale-95 border border-coffee-200/50">
+                                Оптовый прайс
+                            </button>
+                        </div>
+                        <!-- Animated Counters -->
+                        <div class="flex items-center gap-8 mt-10 pt-8 border-t border-coffee-200/40">
+                            <div>
+                                <div class="font-heading font-bold text-3xl shimmer-text"><span class="counter" data-target="10" data-suffix="+">0</span></div>
+                                <div class="text-xs text-coffee-500 mt-1">лет на рынке</div>
+                            </div>
+                            <div>
+                                <div class="font-heading font-bold text-3xl shimmer-text"><span class="counter" data-target="99" data-suffix="%">0</span></div>
+                                <div class="text-xs text-coffee-500 mt-1">положительных отзывов</div>
+                            </div>
+                            <div>
+                                <div class="font-heading font-bold text-3xl shimmer-text"><span class="counter" data-target="2" data-suffix="">0</span></div>
+                                <div class="text-xs text-coffee-500 mt-1">года гарантии</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative animate-fade-in hidden lg:block">
+                        <div class="relative">
+                            <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/170804963-cf2d-4620-8271-d58a64d63844.png" alt="Угловой диван в интерьере" class="rounded-2xl shadow-2xl w-full object-cover" style="max-height:550px">
+                            <div class="absolute -bottom-6 -left-6 glass rounded-2xl shadow-lg p-4 animate-float">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-xl flex items-center justify-center bg-coffee-100/80">
+                                        <svg class="w-6 h-6 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-sm text-coffee-800">Сертификаты</div>
+                                        <div class="text-xs text-coffee-500">Качество подтверждено</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -top-4 -right-4 glass rounded-2xl shadow-lg p-4 animate-float" style="animation-delay:1.5s">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-xl flex items-center justify-center bg-coffee-100/80">
+                                        <svg class="w-6 h-6 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-sm text-coffee-800">Сроки</div>
+                                        <div class="text-xs text-coffee-500">Изготовление 5-14 дней</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream-50 to-transparent"></div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories" class="py-16 lg:py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4">Категории продукции</h2>
+                <p class="text-coffee-500 max-w-2xl mx-auto">Производим широкую линейку мягкой мебели для дома, офиса и коммерческих помещений</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div onclick="filterByCategory('sofa')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
+                    <div class="h-48 bg-coffee-100 overflow-hidden relative">
+                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1721ea6ef-6e9b-46ca-aeb7-4a93ce9bafa5.png" alt="Диваны" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="mb-1">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12V8m0 0a4 4 0 00-4-4H8a4 4 0 00-4 4v4m16 0v6a4 4 0 01-4 4H8a4 4 0 01-4-4v-6m16 0H4"/></svg>
+                            </div>
+                            <div class="font-heading font-bold text-lg">Диваны</div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-coffee-500 mb-3">Прямые, угловые, офисные. Механизмы: дельфин, тик-так, еврокнижка</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-semibold text-coffee-600">от 3 900 ₽</span>
+                            <span class="text-xs bg-coffee-100 text-coffee-600 px-3 py-1 rounded-full font-medium">24 модели</span>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="filterByCategory('chair')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
+                    <div class="h-48 bg-coffee-100 overflow-hidden relative">
+                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/15b0a443a-33a7-4024-9116-bbfb77900e05.png" alt="Кресла" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="mb-1">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>
+                            </div>
+                            <div class="font-heading font-bold text-lg">Кресла</div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-coffee-500 mb-3">Кресла-качалки и классические. Модели Френч и Консул</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-semibold text-coffee-600">от 9 000 ₽</span>
+                            <span class="text-xs bg-coffee-100 text-coffee-600 px-3 py-1 rounded-full font-medium">6 моделей</span>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="filterByCategory('accessory')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
+                    <div class="h-48 bg-coffee-100 overflow-hidden relative">
+                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1ded86539-35b7-45b1-89c6-74a305d614ab.png" alt="Аксессуары" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="mb-1">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                            </div>
+                            <div class="font-heading font-bold text-lg">Аксессуары</div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-coffee-500 mb-3">Пуфы, подушки, декоративные элементы для интерьера</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-semibold text-coffee-600">от 350 ₽</span>
+                            <span class="text-xs bg-coffee-100 text-coffee-600 px-3 py-1 rounded-full font-medium">15 товаров</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section id="catalog" class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4">Каталог продукции</h2>
+                <p class="text-coffee-500 max-w-2xl mx-auto">Выберите категорию и найдите идеальную мебель для вашего интерьера</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button class="filter-btn active px-5 py-2.5 rounded-xl text-sm font-medium border border-coffee-200" data-filter="all" onclick="setFilter('all',this)">Все товары</button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium border border-coffee-200" data-filter="sofa" onclick="setFilter('sofa',this)">
+                    <svg class="w-4 h-4 inline mr-1 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12V8m0 0a4 4 0 00-4-4H8a4 4 0 00-4 4v4m16 0v6a4 4 0 01-4 4H8a4 4 0 01-4-4v-6m16 0H4"/></svg>
+                    Диваны
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium border border-coffee-200" data-filter="chair" onclick="setFilter('chair',this)">
+                    <svg class="w-4 h-4 inline mr-1 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>
+                    Кресла
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium border border-coffee-200" data-filter="accessory" onclick="setFilter('accessory',this)">
+                    <svg class="w-4 h-4 inline mr-1 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    Аксессуары
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-medium border border-coffee-200" data-filter="popular" onclick="setFilter('popular',this)">
+                    <svg class="w-4 h-4 inline mr-1 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    Популярные
+                </button>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+                <span class="text-sm text-coffee-500">Цена:</span>
+                <select id="priceFilter" onchange="applyFilters()" class="px-4 py-2 border border-coffee-200 rounded-xl text-sm bg-white/60 backdrop-blur focus:border-coffee-400 transition-all">
+                    <option value="all">Все цены</option>
+                    <option value="0-5000">До 5 000 ₽</option>
+                    <option value="5000-10000">5 000 – 10 000 ₽</option>
+                    <option value="10000-20000">10 000 – 20 000 ₽</option>
+                    <option value="20000-99999">Более 20 000 ₽</option>
+                </select>
+                <span class="text-sm text-coffee-400" id="productCount">Показано: 11 товаров</span>
+            </div>
+
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+
+            <div id="noProducts" class="hidden text-center py-16">
+                <div class="text-5xl mb-4"></div>
+                <h3 class="font-heading font-semibold text-lg mb-2">Товары не найдены</h3>
+                <p class="text-coffee-500 text-sm">Попробуйте изменить параметры фильтра</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section id="advantages" class="py-16 lg:py-24 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4">Почему выбирают «Маркизу»</h2>
+                <p class="text-coffee-500 max-w-2xl mx-auto">Мы производим мебель, которой гордимся. Вот что делает нас особенными</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-coffee-100/50 group">
+                    <div class="w-16 h-16 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-3">Своё производство</h3>
+                    <p class="text-sm text-coffee-500 leading-relaxed">Полный цикл производства на собственных мощностях в Чердаклах, Ульяновская обл.</p>
+                </div>
+                <div class="glass-card rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-coffee-100/50 group">
+                    <div class="w-16 h-16 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-3">Цены без наценок</h3>
+                    <p class="text-sm text-coffee-500 leading-relaxed">Экономия 25-30% за счёт отсутствия посредников. Работаем напрямую</p>
+                </div>
+                <div class="glass-card rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-coffee-100/50 group">
+                    <div class="w-16 h-16 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-3">Экоматериалы</h3>
+                    <p class="text-sm text-coffee-500 leading-relaxed">Массив сосны, ЛДСП E1 класса, экологичный ППУ. Безопасно для семьи</p>
+                </div>
+                <div class="glass-card rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-coffee-100/50 group">
+                    <div class="w-16 h-16 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-3">Гарантия качества</h3>
+                    <p class="text-sm text-coffee-500 leading-relaxed">2 года гарантии на всю продукцию. Бесплатная замена при обнаружении дефекта</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 glass px-5 py-2 rounded-full text-sm font-semibold text-coffee-600 mb-6">О производстве</div>
+                    <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-6">Фабрика «Маркиза»</h2>
+                    <p class="text-coffee-600 mb-6 leading-relaxed">
+                        Мебельная фабрика <strong>«Маркиза»</strong> основана в <strong>2014 году</strong> в посёлке Чердаклы Ульяновской области. 
+                        За 10 лет работы мы стали одним из ведущих производителей мягкой мебели в регионе.
+                    </p>
+                    <p class="text-coffee-600 mb-8 leading-relaxed">
+                        Наше производство оснащено современным оборудованием: станки ЧПУ, профессиональные швейные комплексы 
+                        и автоматические линии раскроя. Мы контролируем качество на каждом этапе.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-coffee-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div><div class="font-semibold text-sm">Сертификаты</div><div class="text-xs text-coffee-500">Все документы в наличии</div></div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-coffee-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div><div class="font-semibold text-sm">Гарантия 2 года</div><div class="text-xs text-coffee-500">На всю продукцию</div></div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-coffee-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div><div class="font-semibold text-sm">Индивидуальный заказ</div><div class="text-xs text-coffee-500">Любые размеры и обивка</div></div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-coffee-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div><div class="font-semibold text-sm">Опт и розница</div><div class="text-xs text-coffee-500">Специальные условия</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1c9a60afb-a950-4204-9c87-94fd4b078648.png" alt="Производство фабрики Маркиза" class="rounded-2xl shadow-xl w-full object-cover" style="max-height:500px" loading="lazy">
+                    <div class="absolute -bottom-6 -right-6 accent-gradient text-white rounded-2xl p-6 shadow-xl hidden sm:block">
+                        <div class="font-heading font-bold text-3xl">2014</div>
+                        <div class="text-sm text-white/80">год основания</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="py-16 lg:py-24 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4">Отзывы клиентов</h2>
+                <p class="text-coffee-500 max-w-2xl mx-auto">Нам доверяют сотни покупателей по всей России</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl p-6 border border-coffee-100/50 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="text-sm text-coffee-600 mb-5 leading-relaxed">"Заказывали угловой диван Олимп для гостиной. Качество отличное, ткань приятная. Доставили за 5 дней в Казань. Очень довольны, рекомендую!"</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-coffee-100">
+                        <div class="w-10 h-10 bg-coffee-100 rounded-full flex items-center justify-center font-bold text-coffee-600">А</div>
+                        <div><div class="font-semibold text-sm">Анна К.</div><div class="text-xs text-coffee-500">Казань • Олимп угловой</div></div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-6 border border-coffee-100/50 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="text-sm text-coffee-600 mb-5 leading-relaxed">"Берём мебель оптом для нашего мебельного салона. Цены действительно ниже рынка, качество стабильное. Работаем с Маркизой уже 3 года."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-coffee-100">
+                        <div class="w-10 h-10 bg-coffee-100 rounded-full flex items-center justify-center font-bold text-coffee-600">И</div>
+                        <div><div class="font-semibold text-sm">Игорь М.</div><div class="text-xs text-coffee-500">Ульяновск • Оптовый партнёр</div></div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-6 border border-coffee-100/50 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg class="w-5 h-5 coffee-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="text-sm text-coffee-600 mb-5 leading-relaxed">"Кресло-качалка Френч — просто находка! Очень удобное, качественная сборка. Муж собрал за 15 минут. Цена порадовала — дешевле, чем в магазинах."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-coffee-100">
+                        <div class="w-10 h-10 bg-coffee-100 rounded-full flex items-center justify-center font-bold text-coffee-600">Е</div>
+                        <div><div class="font-semibold text-sm">Елена С.</div><div class="text-xs text-coffee-500">Самара • Кресло Френч</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section class="py-16 lg:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 accent-gradient"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 bg-cream-200 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-10">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4 text-white">Получите оптовый прайс-лист</h2>
+                <p class="text-white/70 max-w-xl mx-auto">Специальные условия для розничных магазинов и мебельных салонов. Скидки до 30% от розничных цен.</p>
+            </div>
+            <form id="leadForm" onsubmit="handleLeadForm(event)" class="glass-dark rounded-2xl p-8">
+                <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                    <div>
+                        <label class="block text-sm font-medium text-white/70 mb-2">Ваше имя *</label>
+                        <input type="text" name="name" required placeholder="Иван Иванов" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 focus:border-accent-400 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-white/70 mb-2">Телефон *</label>
+                        <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 focus:border-accent-400 transition-all">
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                    <div>
+                        <label class="block text-sm font-medium text-white/70 mb-2">Email</label>
+                        <input type="email" name="email" placeholder="example@mail.ru" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 focus:border-accent-400 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-white/70 mb-2">Тип сотрудничества</label>
+                        <select name="type" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:border-accent-400 transition-all">
+                            <option value="retail" class="text-coffee-800">Розничный покупатель</option>
+                            <option value="wholesale" class="text-coffee-800">Оптовый покупатель</option>
+                            <option value="dealer" class="text-coffee-800">Дилер / Салон мебели</option>
+                            <option value="horeca" class="text-coffee-800">HoReCa / Офис</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-white/70 mb-2">Комментарий</label>
+                    <textarea name="message" rows="3" placeholder="Какие товары вас интересуют?" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 focus:border-accent-400 transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-white text-coffee-800 px-8 py-4 rounded-xl font-bold text-lg hover:bg-cream-50 hover:shadow-xl transition-all active:scale-[0.98]">
+                    Получить прайс-лист
+                </button>
+                <p class="text-xs text-white/50 text-center mt-4">Нажимая кнопку, вы соглашаетесь с <a href="#" class="underline hover:text-white">политикой конфиденциальности</a></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="py-16 lg:py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl lg:text-4xl mb-4">Контакты</h2>
+                <p class="text-coffee-500 max-w-2xl mx-auto">Свяжитесь с нами удобным способом — ответим в течение 15 минут</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-md transition-shadow border border-coffee-100/50">
+                    <div class="w-14 h-14 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Телефон</h3>
+                    <a href="tel:+79374537915" class="text-sm text-coffee-600 font-medium hover:text-coffee-500 block">+7 (937) 453-79-15</a>
+                    <a href="tel:+79278185859" class="text-sm text-coffee-600 font-medium hover:text-coffee-500 block mt-1">+7 (927) 818-58-59</a>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-md transition-shadow border border-coffee-100/50">
+                    <div class="w-14 h-14 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Email</h3>
+                    <a href="mailto:mirkomfort@list.ru" class="text-sm text-coffee-600 font-medium hover:text-coffee-500">mirkomfort@list.ru</a>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-md transition-shadow border border-coffee-100/50">
+                    <div class="w-14 h-14 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Адрес</h3>
+                    <p class="text-sm text-coffee-600">Ульяновская обл., Чердаклинский р-н, р.п. Чердаклы, ул. Неверова, 34</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-md transition-shadow border border-coffee-100/50">
+                    <div class="w-14 h-14 bg-coffee-100/60 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 coffee-icon-stroke" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Режим работы</h3>
+                    <p class="text-sm text-coffee-600">Пн-Пт: 9:00 — 18:00</p>
+                    <p class="text-sm text-coffee-600">Сб: 10:00 — 15:00</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://vk.com/mfmarkiza" target="_blank" class="flex items-center gap-2 glass-card text-coffee-700 px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all active:scale-95 border border-coffee-200/50">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#8a5a28"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.587-1.496c.598-.189 1.368 1.259 2.184 1.814.616.42 1.084.328 1.084.328l2.178-.03s1.14-.071.6-.97c-.045-.074-.32-.673-1.644-1.896-1.387-1.282-1.202-1.073.469-3.286.786-1.047 1.1-1.686 1.002-1.96-.094-.26-.672-.19-.672-.19l-2.452.015s-.182-.025-.317.056c-.131.079-.216.263-.216.263s-.388 1.032-.906 1.91c-1.094 1.856-1.532 1.952-1.71 1.836-.414-.27-.31-1.084-.31-1.663 0-1.81.274-2.56-.535-2.754-.269-.065-.467-.108-1.156-.115-.882-.009-1.628.003-2.05.21-.282.138-.5.444-.366.462.163.022.534.1.73.365.254.344.245 1.116.245 1.116s.146 2.127-.34 2.393c-.332.183-.788-.19-1.766-1.894-.5-.869-.878-1.826-.878-1.826s-.073-.178-.203-.274c-.158-.116-.378-.153-.378-.153l-2.33.015s-.35.01-.478.162c-.114.135-.009.414-.009.414s1.824 4.258 3.887 6.404c1.892 1.967 4.039 1.837 4.039 1.837h.973z"/></svg>
+                    ВКонтакте
+                </a>
+                <a href="https://t.me/mfmarkiza73" target="_blank" class="flex items-center gap-2 glass-card text-coffee-700 px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all active:scale-95 border border-coffee-200/50">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#8a5a28"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+                <a href="https://wa.me/79374537915" target="_blank" class="flex items-center gap-2 glass-card text-coffee-700 px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all active:scale-95 border border-coffee-200/50">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#8a5a28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-coffee-950 text-coffee-300 py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169fa6309-2bbd-49fc-830a-b2e08e5a2b7e.png" alt="Логотип Маркиза" class="h-10 w-auto mb-4 brightness-0 invert opacity-80" loading="lazy">
+                    <p class="text-sm text-coffee-400 leading-relaxed">Производство мягкой мебели в Ульяновской области с 2014 года. Цены без розничных наценок.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Каталог</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#catalog" class="hover:text-accent-400 transition-colors">Диваны</a></li>
+                        <li><a href="#catalog" class="hover:text-accent-400 transition-colors">Кресла</a></li>
+                        <li><a href="#catalog" class="hover:text-accent-400 transition-colors">Аксессуары</a></li>
+                        <li><a href="#" class="hover:text-accent-400 transition-colors">Новинки</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Информация</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-accent-400 transition-colors">О фабрике</a></li>
+                        <li><a href="#advantages" class="hover:text-accent-400 transition-colors">Доставка и оплата</a></li>
+                        <li><a href="#reviews" class="hover:text-accent-400 transition-colors">Отзывы</a></li>
+                        <li><a href="#" class="hover:text-accent-400 transition-colors">Гарантия</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Контакты</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="#c9a97a" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <a href="tel:+79374537915" class="hover:text-accent-400 transition-colors">+7 (937) 453-79-15</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="#c9a97a" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <a href="mailto:mirkomfort@list.ru" class="hover:text-accent-400 transition-colors">mirkomfort@list.ru</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#c9a97a" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>ул. Неверова, 34, Чердаклы, Ульяновская обл.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-coffee-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-coffee-500">© 2026 Мебельная фабрика «Маркиза». Все права защищены.</p>
+                <div class="flex items-center gap-4 text-sm text-coffee-500">
+                    <a href="#" class="hover:text-accent-400 transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="hover:text-accent-400 transition-colors">Карта сайта</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CALLBACK MODAL -->
+    <div id="callbackModal" class="fixed inset-0 z-[60] hidden">
+        <div class="modal-overlay absolute inset-0 bg-coffee-950/50" onclick="closeCallbackModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="glass rounded-2xl shadow-2xl w-full max-w-md p-8 relative animate-scale-in border border-coffee-200/30">
+                <button onclick="closeCallbackModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg hover:bg-coffee-100 transition-colors text-coffee-400 hover:text-coffee-600 text-xl leading-none">✕</button>
+                <h3 class="font-heading font-bold text-2xl mb-2">Заказать звонок</h3>
+                <p class="text-coffee-500 text-sm mb-6">Оставьте номер — перезвоним в течение 15 минут</p>
+                <form id="callbackForm" onsubmit="handleCallbackForm(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-coffee-700 mb-1.5">Ваше имя</label>
+                        <input type="text" name="name" required placeholder="Как к вам обращаться?" class="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm focus:border-accent-400 transition-all bg-white/60">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-coffee-700 mb-1.5">Телефон *</label>
+                        <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 border border-coffee-200 rounded-xl text-sm focus:border-accent-400 transition-all bg-white/60">
+                    </div>
+                    <button type="submit" class="w-full accent-gradient text-white py-3.5 rounded-xl font-semibold hover:shadow-lg transition-all active:scale-[0.98]">Жду звонка</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div id="productModal" class="fixed inset-0 z-[60] hidden">
+        <div class="modal-overlay absolute inset-0 bg-coffee-950/50" onclick="closeProductModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4 overflow-y-auto">
+            <div id="productModalContent" class="glass rounded-2xl shadow-2xl w-full max-w-3xl relative animate-scale-in my-8 border border-coffee-200/30"></div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer" class="fixed top-20 right-4 z-[70] space-y-3"></div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/79374537915" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 accent-gradient rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all active:scale-95" title="Написать в WhatsApp">
+        <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white relative">
+            <span class="absolute inset-0 w-3 h-3 bg-red-400 rounded-full animate-ping"></span>
+        </span>
+    </a>
+
+    <script>
+        const products = [
+            { id:1, name:'Диван Олимп-7', slug:'olimp-7', category:'sofa', subcategory:'straight', price:12900, oldPrice:16500, description:'Прямой диван с механизмом раскладывания «дельфин». Идеально подходит для ежедневного сна. Каркас из массива сосны и ЛДСП класса E1.', features:['Механизм: дельфин','Габариты: 200×90×85 см','Спальное место: 140×200 см','Каркас: массив сосны + ЛДСП','Наполнитель: ППУ + синтепон'], materials:{frame:'Массив сосны, ЛДСП 16мм',filling:'ППУ повышенной плотности',upholstery:['Велюр','Рогожка','Экокожа']}, popular:true, inStock:true, stockCount:15, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169b1ea1f-2ddc-455d-ab3c-506b71092450.png'},
+            { id:2, name:'Диван Олимп-13', slug:'olimp-13', category:'sofa', subcategory:'straight', price:14500, oldPrice:18000, description:'Прямой диван увеличенного размера с просторным спальным местом. Механизм «тик-так» — лёгкое и бесшумное раскладывание.', features:['Механизм: тик-так','Габариты: 230×95×90 см','Спальное место: 160×200 см','Каркас: массив берёзы','Усиленные подлокотники'], materials:{frame:'Массив берёзы, ЛДСП 22мм',filling:'ППУ HR 35 плотности',upholstery:['Велюр премиум','Жаккард','Рогожка']}, popular:true, inStock:true, stockCount:8, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169b1ea1f-2ddc-455d-ab3c-506b71092450.png'},
+            { id:3, name:'Диван Олимп-14', slug:'olimp-14', category:'sofa', subcategory:'straight', price:15900, description:'Премиальная модель прямого дивана с еврокнижкой. Увеличенная глубина сидения для максимального комфорта.', features:['Механизм: еврокнижка','Габариты: 210×95×85 см','Спальное место: 150×200 см','Усиленный каркас','Ящик для белья'], materials:{frame:'Массив сосны, фанера 18мм',filling:'ППУ + кокосовая койра',upholstery:['Велюр','Жаккард','Шенилл']}, popular:false, inStock:true, stockCount:5, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169b1ea1f-2ddc-455d-ab3c-506b71092450.png'},
+            { id:4, name:'Диван Мегаполис', slug:'megapolis', category:'sofa', subcategory:'corner', price:24900, oldPrice:31500, description:'Просторный угловой диван с оттоманкой. Механизм «дельфин» для ежедневного сна. Вместительный бельевой ящик.', features:['Механизм: дельфин','Габариты: 270×170×85 см','Спальное место: 190×130 см','Оттоманка: левая/правая','Бельевой ящик'], materials:{frame:'Массив сосны + берёзы',filling:'ППУ повышенной упругости',upholstery:['Велюр','Микровелюр','Жаккард']}, popular:true, inStock:true, stockCount:6, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1721ea6ef-6e9b-46ca-aeb7-4a93ce9bafa5.png'},
+            { id:5, name:'Диван Гоя', slug:'goya', category:'sofa', subcategory:'corner', price:28500, description:'Элегантный угловой диван с плавными линиями. Механизм «тик-так» — бесшумное раскладывание.', features:['Механизм: тик-так','Габариты: 250×160×90 см','Спальное место: 180×120 см','Компактный дизайн','Металлические ножки'], materials:{frame:'Массив берёзы',filling:'ППУ HR + латекс',upholstery:['Велюр премиум','Букле','Шенилл']}, popular:true, inStock:true, stockCount:4, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1d4252ae2-8a7c-482a-8b21-9dd8c6358c41.png'},
+            { id:6, name:'Диван Олимпус', slug:'olympus', category:'sofa', subcategory:'corner', price:32000, description:'Премиальный угловой диван увеличенного размера. Высокая спинка, глубокие сидения.', features:['Механизм: дельфин','Габариты: 290×180×95 см','Спальное место: 200×140 см','Высокая спинка','Два бельевых ящика'], materials:{frame:'Массив бука + сосны',filling:'ППУ + кокос + войлок',upholstery:['Натуральная кожа','Экокожа','Велюр']}, popular:false, inStock:true, stockCount:3, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1d4252ae2-8a7c-482a-8b21-9dd8c6358c41.png'},
+            { id:7, name:'Диван офисный', slug:'office-sofa', category:'sofa', subcategory:'office', price:3900, oldPrice:5400, description:'Компактный офисный диван для зоны ожидания или кабинета. Прочная конструкция, лёгкая сборка.', features:['Без механизма раскладывания','Габариты: 150×65×75 см','Каркас: ЛДСП + металл','Обивка: кожзам/ткань','Быстрая сборка'], materials:{frame:'ЛДСП + металлический каркас',filling:'ППУ стандарт',upholstery:['Экокожа','Ткань офисная']}, popular:true, inStock:true, stockCount:30, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169b1ea1f-2ddc-455d-ab3c-506b71092450.png'},
+            { id:8, name:'Кресло Френч (качалка)', slug:'french-rocking', category:'chair', subcategory:'rocking', price:9000, description:'Уютное кресло-качалка с плавным ходом. Каркас из массива берёзы. Подходит для ежедневного использования.', features:['Тип: кресло-качалка','Габариты: 75×80×95 см','Каркас: массив берёзы','Наполнитель: ППУ','Сидение: глубокое, мягкое'], materials:{frame:'Массив берёзы',filling:'ППУ + синтепон',upholstery:['Велюр','Жаккард','Рогожка']}, popular:true, inStock:true, stockCount:10, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/15b0a443a-33a7-4024-9116-bbfb77900e05.png'},
+            { id:9, name:'Кресло Консул (качалка)', slug:'consul-rocking', category:'chair', subcategory:'rocking', price:11000, description:'Премиальное кресло-качалка увеличенного размера. Высокая спинка, широкие подлокотники.', features:['Тип: кресло-качалка','Габариты: 80×85×100 см','Каркас: массив дуба','Увеличенное сидение','Подголовник'], materials:{frame:'Массив дуба',filling:'ППУ HR + латекс',upholstery:['Велюр премиум','Натуральная кожа','Букле']}, popular:false, inStock:true, stockCount:5, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/15b0a443a-33a7-4024-9116-bbfb77900e05.png'},
+            { id:10, name:'Кресло Френч (обычное)', slug:'french-classic', category:'chair', subcategory:'classic', price:9000, description:'Классическое мягкое кресло с высокой спинкой. Комфортное сидение, устойчивые ножки.', features:['Тип: классическое кресло','Габариты: 75×75×95 см','Каркас: массив берёзы','Ножки: деревянные','Сидение: 50×48 см'], materials:{frame:'Массив берёзы',filling:'ППУ + синтепон',upholstery:['Велюр','Жаккард','Ткань']}, popular:false, inStock:true, stockCount:12, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/17629b966-7aff-4928-9ea7-d0ec711bf275.png'},
+            { id:11, name:'Пуф Мега', slug:'pouf-mega', category:'accessory', subcategory:'pouf', price:4300, description:'Большой круглый пуф с мягким сидением. Идеален как дополнительное место для гостей.', features:['Форма: круглая','Диаметр: 50 см','Высота: 42 см','Каркас: фанера + ППУ','Нескользящее дно'], materials:{frame:'Фанера 18мм',filling:'ППУ + синтепон',upholstery:['Велюр','Экокожа','Жаккард']}, popular:false, inStock:true, stockCount:20, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1ded86539-35b7-45b1-89c6-74a305d614ab.png'},
+            { id:12, name:'Пуф Квадро', slug:'pouf-quadro', category:'accessory', subcategory:'pouf', price:3400, description:'Квадратный пуф компактного размера. Универсальный дизайн подходит к любому интерьеру.', features:['Форма: квадратная','Размер: 40×40×40 см','Каркас: ЛДСП + ППУ','Лёгкий вес','Множество расцветок'], materials:{frame:'ЛДСП 16мм',filling:'ППУ стандарт',upholstery:['Велюр','Ткань','Экокожа']}, popular:true, inStock:true, stockCount:25, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/121d1f13a-4eac-4d54-998e-7ed788e8fbdc.png'},
+            { id:13, name:'Подушка декоративная', slug:'pillow-decorative', category:'accessory', subcategory:'pillow', price:400, description:'Декоративная подушка квадратной формы. Наполнитель — холлофайбер. Съёмный чехол на молнии.', features:['Форма: квадрат','Размер: 45×45 см','Наполнитель: холлофайбер','Чехол: съёмный на молнии','Можно стирать'], materials:{filling:'Холлофайбер 300г',cover:['Лён','Хлопок','Велюр','Жаккард']}, popular:false, inStock:true, stockCount:50, image:'https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1126fd668-d259-4fa7-ab82-47eaf351e6d2.png'}
+        ];
+
+        let currentFilter = 'all';
+        let currentPriceRange = 'all';
+
+        // ===== ANIMATED COUNTERS =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 seconds
+                const start = 0;
+                const startTime = performance.now();
+                
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(eased * target);
+                    counter.textContent = current + suffix;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + suffix;
+                    }
+                }
+                
+                requestAnimationFrame(updateCounter);
+            });
+        }
+
+        // Intersection Observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    counterObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.shimmer-text');
+        if (statsSection) {
+            const parent = statsSection.closest('.flex');
+            if (parent) counterObserver.observe(parent);
+        }
+
+        // ===== RENDER PRODUCTS =====
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const noProducts = document.getElementById('noProducts');
+            const countEl = document.getElementById('productCount');
+            
+            let filtered = [...products];
+            if (currentFilter === 'popular') filtered = filtered.filter(p => p.popular);
+            else if (currentFilter !== 'all') filtered = filtered.filter(p => p.category === currentFilter);
+            
+            if (currentPriceRange !== 'all') {
+                const [min, max] = currentPriceRange.split('-').map(Number);
+                filtered = filtered.filter(p => p.price >= min && p.price <= max);
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noProducts.classList.remove('hidden');
+                countEl.textContent = 'Показано: 0 товаров';
+                return;
+            }
+            
+            noProducts.classList.add('hidden');
+            countEl.textContent = `Показано: ${filtered.length} ${getProductWord(filtered.length)}`;
+            
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card bg-white rounded-2xl overflow-hidden border border-coffee-100/60 cursor-pointer group" onclick="openProductModal(${p.id})">
+                    <div class="relative h-52 overflow-hidden bg-coffee-50">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        ${p.oldPrice ? `<div class="absolute top-3 left-3 bg-gradient-to-r from-coffee-600 to-coffee-700 text-white text-xs font-bold px-2.5 py-1 rounded-lg">-${Math.round((1-p.price/p.oldPrice)*100)}%</div>` : ''}
+                        ${p.popular ? `<div class="absolute top-3 right-3 accent-gradient text-white text-xs font-bold px-2.5 py-1 rounded-lg">
+                            <svg class="w-3 h-3 inline mr-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                            Хит
+                        </div>` : ''}
+                        ${!p.inStock ? `<div class="absolute inset-0 bg-white/70 flex items-center justify-center"><span class="bg-coffee-100 text-coffee-700 px-3 py-1 rounded-full text-sm font-medium">Нет в наличии</span></div>` : ''}
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs text-coffee-400 uppercase tracking-wider mb-1">${getCategoryName(p.category)}${p.subcategory ? ' • ' + getSubcategoryName(p.subcategory) : ''}</div>
+                        <h3 class="font-heading font-semibold text-base mb-2 group-hover:text-coffee-600 transition-colors">${p.name}</h3>
+                        <div class="flex items-end gap-2 mb-3">
+                            <span class="font-bold text-xl text-coffee-700">${formatPrice(p.price)}</span>
+                            ${p.oldPrice ? `<span class="text-sm text-coffee-400 line-through">${formatPrice(p.oldPrice)}</span>` : ''}
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="event.stopPropagation();openOrderModal(${p.id})" class="flex-1 accent-gradient text-white py-2.5 rounded-xl text-sm font-medium hover:shadow-lg transition-all active:scale-95">Заказать</button>
+                            <button onclick="event.stopPropagation();openProductModal(${p.id})" class="px-3 py-2.5 border border-coffee-200 rounded-xl text-coffee-400 hover:border-coffee-400 hover:text-coffee-600 transition-all" title="Подробнее">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts();
+        }
+
+        function applyFilters() {
+            currentPriceRange = document.getElementById('priceFilter').value;
+            renderProducts();
+        }
+
+        function filterByCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+                if (b.dataset.filter === cat) b.classList.add('active');
+            });
+            renderProducts();
+            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openCallbackModal() {
+            document.getElementById('callbackModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCallbackModal() {
+            document.getElementById('callbackModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function openProductModal(id) {
+            const p = products.find(pr => pr.id === id);
+            if (!p) return;
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('productModalContent');
+            
+            content.innerHTML = `
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-xl bg-white/80 hover:bg-white transition-colors text-coffee-400 hover:text-coffee-600 shadow-sm text-xl">✕</button>
+                <div class="grid md:grid-cols-2">
+                    <div class="bg-coffee-50/50 p-6 flex items-center justify-center" style="min-height:300px">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain rounded-xl image-zoom" style="max-height:350px">
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="text-xs text-coffee-400 uppercase tracking-wider mb-2">${getCategoryName(p.category)}${p.subcategory ? ' • ' + getSubcategoryName(p.subcategory) : ''}</div>
+                        <h2 class="font-heading font-bold text-2xl mb-3">${p.name}</h2>
+                        <p class="text-sm text-coffee-600 mb-4 leading-relaxed">${p.description}</p>
+                        <div class="flex items-end gap-3 mb-6">
+                            <span class="font-bold text-3xl text-coffee-700">${formatPrice(p.price)}</span>
+                            ${p.oldPrice ? `<span class="text-lg text-coffee-400 line-through">${formatPrice(p.oldPrice)}</span>` : ''}
+                        </div>
+                        ${p.inStock ? `<div class="flex items-center gap-2 text-coffee-600 text-sm mb-4">
+                            <svg class="w-4 h-4" fill="none" stroke="#6b4d28" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            В наличии (${p.stockCount} шт.)
+                        </div>` : '<div class="text-coffee-500 text-sm mb-4">Нет в наличии</div>'}
+                        <div class="mb-5">
+                            <h4 class="font-semibold text-sm mb-2">Характеристики:</h4>
+                            <ul class="space-y-1">${p.features.map(f => `<li class="text-sm text-coffee-600 flex items-start gap-2"><span class="text-accent-400 mt-0.5">•</span>${f}</li>`).join('')}</ul>
+                        </div>
+                        <div class="mb-5">
+                            <h4 class="font-semibold text-sm mb-2">Материалы:</h4>
+                            <ul class="space-y-1 text-sm text-coffee-600">
+                                ${p.materials.frame ? `<li><strong>Каркас:</strong> ${p.materials.frame}</li>` : ''}
+                                ${p.materials.filling ? `<li><strong>Наполнитель:</strong> ${p.materials.filling}</li>` : ''}
+                                ${p.materials.upholstery ? `<li><strong>Обивка:</strong> ${p.materials.upholstery.join(', ')}</li>` : ''}
+                                ${p.materials.cover ? `<li><strong>Чехол:</strong> ${p.materials.cover.join(', ')}</li>` : ''}
+                            </ul>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="closeProductModal();openOrderModal(${p.id})" class="flex-1 accent-gradient text-white py-3.5 rounded-xl font-semibold hover:shadow-lg transition-all active:scale-[0.98]">${p.inStock ? 'Заказать' : 'Предзаказ'}</button>
+                            <a href="https://wa.me/79374537915?text=Здравствуйте! Интересует ${encodeURIComponent(p.name)} (${formatPrice(p.price)})" target="_blank" class="px-4 py-3.5 bg-coffee-600 text-white rounded-xl font-semibold hover:bg-coffee-700 transition-colors active:scale-95" title="WhatsApp">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function openOrderModal(id) {
+            const p = products.find(pr => pr.id === id);
+            if (!p) return;
+            openCallbackModal();
+            const titleEl = document.querySelector('#callbackModal h3');
+            const descEl = document.querySelector('#callbackModal p');
+            titleEl.textContent = `Заказать: ${p.name}`;
+            descEl.textContent = `Цена: ${formatPrice(p.price)}. Оставьте контакты — менеджер свяжется.`;
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleCallbackForm(e) {
+            e.preventDefault();
+            showToast('✅ Заявка отправлена! Мы перезвоним в течение 15 минут.', 'success');
+            e.target.reset();
+            setTimeout(closeCallbackModal, 1500);
+        }
+
+        function handleLeadForm(e) {
+            e.preventDefault();
+            showToast('✅ Заявка отправлена! Прайс-лист будет отправлен в ближайшее время.', 'success');
+            e.target.reset();
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('ru-RU', { style:'currency', currency:'RUB', maximumFractionDigits:0 }).format(price);
+        }
+
+        function getCategoryName(cat) {
+            return { sofa:'Диваны', chair:'Кресла', accessory:'Аксессуары' }[cat] || cat;
+        }
+
+        function getSubcategoryName(sub) {
+            return { straight:'Прямой', corner:'Угловой', office:'Офисный', rocking:'Качалка', classic:'Классическое', pouf:'Пуф', pillow:'Подушка', toy:'Игрушка' }[sub] || sub;
+        }
+
+        function getProductWord(count) {
+            const m10 = count % 10, m100 = count % 100;
+            if (m100 >= 11 && m100 <= 19) return 'товаров';
+            if (m10 === 1) return 'товар';
+            if (m10 >= 2 && m10 <= 4) return 'товара';
+            return 'товаров';
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast px-6 py-4 rounded-xl shadow-xl text-sm font-medium max-w-sm ${type === 'success' ? 'bg-coffee-700 text-white' : 'bg-red-600 text-white'}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        // ===== SCROLL ANIMATIONS =====
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    entry.target.classList.remove('section-hidden');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(s => { s.classList.add('section-hidden'); sectionObserver.observe(s); });
+
+        // ===== HEADER SCROLL EFFECT =====
+        let headerEl = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                headerEl.classList.add('glass', 'shadow-sm');
+            } else {
+                headerEl.classList.remove('glass', 'shadow-sm');
+            }
+        });
+
+        // ===== PHONE MASK =====
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            input.addEventListener('input', function(e) {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length > 0) {
+                    if (val[0] === '7' || val[0] === '8') val = val.substring(1);
+                    let f = '+7';
+                    if (val.length > 0) f += ' (' + val.substring(0, 3);
+                    if (val.length > 3) f += ') ' + val.substring(3, 6);
+                    if (val.length > 6) f += '-' + val.substring(6, 8);
+                    if (val.length > 8) f += '-' + val.substring(8, 10);
+                    e.target.value = f;
+                }
+            });
+        });
+
+        // ===== KEYBOARD CLOSE MODALS =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeCallbackModal(); closeProductModal(); }
+        });
+
+        // ===== INIT =====
+        renderProducts();
+    </script>
+</body>
+</html>
+
