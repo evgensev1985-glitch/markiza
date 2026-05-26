@@ -1,0 +1,22 @@
+# robots.txt для мебельной фабрики «Маркиза»
+
+# Разрешаем всем поисковым роботам доступ
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию админ-панели
+Disallow: /admin/
+Disallow: /api/
+Disallow: /data/
+
+# Карта сайта
+Sitemap: https://markiza-mebel.ru/sitemap.xml
+
+# Задержка между запросами (вежливая индексация)
+Crawl-delay: 1
+
+# Основные страницы для приоритетной индексации
+# Приоритетные разделы:
+# - Главная (/)
+# - Каталог (/index.html#catalog)
+# - Контакты (/index.html#contacts)
