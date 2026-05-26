@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мебельная фабрика «Маркиза» — Мягкая мебель от производителя без наценок</title>
     <meta name="description" content="Диваны, кресла, пуфы от производителя в Ульяновске. Экономия до 30% без розничных наценок. Гарантия 2 года.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Tailwind CSS (локальная версия для продакшена) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,64 +26,9 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-        @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-        @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-        @keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-        @keyframes fadeOut{to{opacity:0;transform:translateX(20px)}}
-        @keyframes pulse-ring{0%{transform:scale(0.8);opacity:0.5}100%{transform:scale(1.3);opacity:0}}
-        
-        html{scroll-behavior:smooth}
-        body{font-family:'Inter',sans-serif}
-        
-        .hero-gradient{background:linear-gradient(160deg,#fdf8f0 0%,#f0e6d5 30%,#e0c9a8 60%,#d4b896 100%)}
-        
-        .glass{background:rgba(255,255,255,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.3)}
-        .glass-dark{background:rgba(90,64,36,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15)}
-        .glass-card{background:rgba(255,255,255,0.65);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(196,136,58,0.12)}
-        
-        .accent-gradient{background:linear-gradient(135deg,#d4a24e 0%,#c4883a 25%,#b07028 50%,#8a5a28 75%,#6b4d28 100%)}
-        .accent-gradient-hover{background:linear-gradient(135deg,#e0b060 0%,#d4a24e 25%,#c4883a 50%,#b07028 75%,#957140 100%)}
-        .accent-gradient-text{background:linear-gradient(135deg,#d4a24e 0%,#b07028 50%,#6b4d28 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .shimmer-text{background:linear-gradient(90deg,#d4a24e 0%,#f0d68a 25%,#d4a24e 50%,#f0d68a 75%,#d4a24e 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2.5s infinite}
-        
-        .product-card{transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
-        .product-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(107,77,40,0.12)}
-        
-        .nav-link{position:relative}
-        .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#d4a24e,#8a5a28);transition:width 0.3s}
-        .nav-link:hover::after,.nav-link.active::after{width:100%}
-        
-        .modal-overlay{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-        
-        input:focus,textarea:focus,select:focus{outline:none;border-color:#c4883a;box-shadow:0 0 0 3px rgba(196,136,58,0.15)}
-        
-        .filter-btn{transition:all 0.25s}
-        .filter-btn.active{background:linear-gradient(135deg,#957140,#6b4d28);color:white;box-shadow:0 4px 16px rgba(107,77,40,0.25)}
-        
-        .toast{animation:slideInRight 0.4s ease-out,fadeOut 0.4s ease-out 2.6s forwards}
-        
-        ::-webkit-scrollbar{width:8px}
-        ::-webkit-scrollbar-track{background:#faf6f1}
-        ::-webkit-scrollbar-thumb{background:#c9a97a;border-radius:4px}
-        ::-webkit-scrollbar-thumb:hover{background:#957140}
-        
-        .section-visible{animation:slideUp 0.7s ease-out forwards}
-        .section-hidden{opacity:0;transform:translateY(40px)}
-        .image-zoom{transition:transform 0.6s ease}
-        .image-zoom:hover{transform:scale(1.05)}
-        
-        .stat-card{background:linear-gradient(135deg,rgba(255,255,255,0.7),rgba(255,255,255,0.4));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,136,58,0.15)}
-        
-        .coffee-icon{fill:#8a5a28}
-        .coffee-icon-stroke{stroke:#8a5a28;fill:none}
-    </style>
+    
+    <!-- Локальные стили -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-cream-50 text-coffee-900 antialiased">
 
@@ -87,7 +37,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="h-16 lg:h-20 flex items-center justify-between">
                 <a href="#hero" class="flex items-center gap-3 group">
-                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169fa6309-2bbd-49fc-830a-b2e08e5a2b7e.png" alt="Логотип Маркиза" class="h-10 w-auto" loading="eager">
+                    <img src="images/logo.jpg" alt="Логотип Маркиза" class="h-10 w-auto" loading="eager">
                 </a>
                 <nav class="hidden lg:flex items-center gap-8">
                     <a href="#catalog" class="nav-link text-sm font-medium text-coffee-600 hover:text-coffee-800 transition-colors">Каталог</a>
@@ -176,7 +126,7 @@
                     </div>
                     <div class="relative animate-fade-in hidden lg:block">
                         <div class="relative">
-                            <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/170804963-cf2d-4620-8271-d58a64d63844.png" alt="Угловой диван в интерьере" class="rounded-2xl shadow-2xl w-full object-cover" style="max-height:550px">
+                            <img src="images/products/olimp.jpg" alt="Угловой диван в интерьере" class="rounded-2xl shadow-2xl w-full object-cover" style="max-height:550px" loading="eager">
                             <div class="absolute -bottom-6 -left-6 glass rounded-2xl shadow-lg p-4 animate-float">
                                 <div class="flex items-center gap-3">
                                     <div class="w-11 h-11 rounded-xl flex items-center justify-center bg-coffee-100/80">
@@ -217,7 +167,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div onclick="filterByCategory('sofa')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
                     <div class="h-48 bg-coffee-100 overflow-hidden relative">
-                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1721ea6ef-6e9b-46ca-aeb7-4a93ce9bafa5.png" alt="Диваны" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <img src="images/products/megapolis.jpg" alt="Диваны" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <div class="mb-1">
@@ -236,7 +186,7 @@
                 </div>
                 <div onclick="filterByCategory('chair')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
                     <div class="h-48 bg-coffee-100 overflow-hidden relative">
-                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/15b0a443a-33a7-4024-9116-bbfb77900e05.png" alt="Кресла" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <img src="images/products/rocking-chair.jpg" alt="Кресла" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <div class="mb-1">
@@ -255,7 +205,7 @@
                 </div>
                 <div onclick="filterByCategory('accessory')" class="group cursor-pointer glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-coffee-100/50">
                     <div class="h-48 bg-coffee-100 overflow-hidden relative">
-                        <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1ded86539-35b7-45b1-89c6-74a305d614ab.png" alt="Аксессуары" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <img src="images/products/sigma.jpg" alt="Аксессуары" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-coffee-900/40 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <div class="mb-1">
@@ -409,7 +359,7 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/1c9a60afb-a950-4204-9c87-94fd4b078648.png" alt="Производство фабрики Маркиза" class="rounded-2xl shadow-xl w-full object-cover" style="max-height:500px" loading="lazy">
+                    <img src="images/products/leon.jpg" alt="Производство фабрики Маркиза" class="rounded-2xl shadow-xl w-full object-cover" style="max-height:500px" loading="lazy">
                     <div class="absolute -bottom-6 -right-6 accent-gradient text-white rounded-2xl p-6 shadow-xl hidden sm:block">
                         <div class="font-heading font-bold text-3xl">2014</div>
                         <div class="text-sm text-white/80">год основания</div>
@@ -584,7 +534,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
                 <div>
-                    <img src="https://image.qwenlm.ai/public_source/d2c02ccd-d8b4-450c-b3e4-849d8eb83f33/169fa6309-2bbd-49fc-830a-b2e08e5a2b7e.png" alt="Логотип Маркиза" class="h-10 w-auto mb-4 brightness-0 invert opacity-80" loading="lazy">
+                    <img src="images/logo.jpg" alt="Логотип Маркиза" class="h-10 w-auto mb-4 brightness-0 invert opacity-80" loading="lazy">
                     <p class="text-sm text-coffee-400 leading-relaxed">Производство мягкой мебели в Ульяновской области с 2014 года. Цены без розничных наценок.</p>
                 </div>
                 <div>
